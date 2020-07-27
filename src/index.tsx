@@ -29,10 +29,9 @@ export type TLoginButtonProps = Readonly<{
   lang?: string;
 }>;
 
-declare var TelegramOnAuthCb: (user: TUser) => void | undefined;
-
 export class TLoginButton extends Component<TLoginButtonProps> {
   private readonly _containerRef = createRef<HTMLDivElement>();
+
   componentDidMount(): void {
     const {
       botName,
@@ -46,7 +45,7 @@ export class TLoginButton extends Component<TLoginButtonProps> {
     } = this.props;
 
     if (onAuthCallback != null) {
-      TelegramOnAuthCb = (user: TUser) => onAuthCallback(user);
+      (window as any).TelegramOnAuthCb = (user: TUser) => onAuthCallback(user);
     }
 
     const script = document.createElement('script');
