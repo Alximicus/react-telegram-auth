@@ -22,7 +22,7 @@ export type TLoginButtonProps = Readonly<{
   botName: string;
   onAuthCallback?: (user: TUser) => void;
   redirectUrl?: string;
-  buttonSize?: TLoginButtonSize;
+  buttonSize: TLoginButtonSize;
   cornerRadius?: number;
   requestAccess?: string;
   usePic?: boolean;
@@ -33,15 +33,6 @@ declare var TelegramOnAuthCb: (user: TUser) => void | undefined;
 
 export class TLoginButton extends Component<TLoginButtonProps> {
   private readonly _containerRef = createRef<HTMLDivElement>();
-
-  static defaultProps: Partial<Readonly<TLoginButtonProps>> = {
-    onAuthCallback: (user) => {
-      console.log('Logged user: ', user);
-    },
-    buttonSize: TLoginButtonSize.Large,
-    lang: 'en',
-  };
-
   componentDidMount(): void {
     const {
       botName,
