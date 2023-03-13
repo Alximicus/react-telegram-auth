@@ -1,6 +1,6 @@
 {
   "name": "react-telegram-auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React component wrapper for Telegram Login Widget",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -17,7 +17,10 @@
     "typescript",
     "telegram",
     "react",
-    "tg"
+    "tg",
+    "telegram-widget",
+    "tg-widget",
+    "telegram-auth"
   ],
   "repository": {
     "type": "git",
@@ -27,10 +30,10 @@
     "url": "https://github.com/Alximicus/react-telegram-auth/issues"
   },
   "devDependencies": {
-    "@types/react": "^16.9.43",
-    "typescript": "^3.9.7"
+    "@types/react": "18.0.28",
+    "typescript": "4.9.5"
   },
   "dependencies": {
-    "react": "^16.13.1"
+    "react": "18.2.0"
   }
 }

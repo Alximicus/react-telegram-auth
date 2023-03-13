@@ -7,7 +7,6 @@ export enum TLoginButtonSize {
   Small = 'small',
 }
 
-// todo: Check and update this interface
 export type TUser = Readonly<{
   auth_date: number;
   first_name: string;
@@ -20,19 +19,20 @@ export type TUser = Readonly<{
 
 export type TLoginButtonProps = Readonly<{
   botName: string;
+  buttonSize: TLoginButtonSize;
   onAuthCallback?: (user: TUser) => void;
   redirectUrl?: string;
-  buttonSize: TLoginButtonSize;
   cornerRadius?: number;
   requestAccess?: string;
   usePic?: boolean;
   lang?: string;
+  additionalClassNames?: string;
 }>;
 
 export class TLoginButton extends Component<TLoginButtonProps> {
   private readonly _containerRef = createRef<HTMLDivElement>();
 
-  componentDidMount(): void {
+  override componentDidMount(): void {
     const {
       botName,
       buttonSize,
@@ -49,7 +49,7 @@ export class TLoginButton extends Component<TLoginButtonProps> {
     }
 
     const script = document.createElement('script');
-    script.src = 'https://telegram.org/js/telegram-widget.js?10';
+    script.src = 'https://telegram.org/js/telegram-widget.js?21';
     script.async = true;
 
     script.setAttribute('data-telegram-login', botName)
@@ -79,7 +79,7 @@ export class TLoginButton extends Component<TLoginButtonProps> {
     this._containerRef.current!.appendChild(script);
   }
 
-  render(): ReactNode {
-    return <div className="tlogin-button" ref={this._containerRef}/>;
+  override render(): ReactNode {
+    return <div className={`tlogin-button ${this.props.additionalClassNames ?? ''}`} ref={this._containerRef}/>;
   }
 }
